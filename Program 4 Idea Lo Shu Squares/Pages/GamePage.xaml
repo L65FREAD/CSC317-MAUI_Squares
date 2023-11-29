@@ -1,33 +1,73 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Program_4_Idea_Lo_Shu_Squares.Pages.GamePage"
              Title="GamePage">
-    <!-- Note that there is a "wrapper" grid that houses the background picture. -->
-    <Grid>
-        <Image Source="background.jpg" VerticalOptions="FillAndExpand" HorizontalOptions="End" />
+
+    <Grid Background="#f0fbff">
         
-        <Grid
-            RowDefinitions="40, 10, 80, 80, 80, 10, *"
-            ColumnDefinitions="10, 80, 80, 80, *, 10"
-            MinimumWidthRequest="300"
-            MaximumWidthRequest="400"
-        >
-            <!-- Row 1: Title  -->
-            <!-- Row 2: Padder Row (nothing here)  -->
-            <!-- Row 3 - 5: Lo Shu Squares Options Buttons  -->
-            <!-- Row 6: Padder Row (nothing here)  -->
-            <!-- Row 7: Scoring and Difficulty Row  -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          
+        </Grid.RowDefinitions>
+        
+        <StackLayout Grid.Row="0">
 
-            <!-- Column 1: Padder Row (nothing here)  -->
-            <!-- Column 2 - 4: Lo Shu Square  -->
-            <!-- Column 3: Options Buttons  -->
-            <!-- Column 4: Padder Row (nothing here)  -->
+
+        <!-- Timer display at the top -->
+        <Label MinimumWidthRequest="500" HorizontalTextAlignment="Center" Padding="10" Text="Time Left: 296 Seconds" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" Background="#6666AA"/>
             
-            <!-- Your code should go inside this grid.... -->
+        </StackLayout>
+        <!-- 3x3 game grid in the middle -->
+       <Grid Grid.Row="1" MaximumWidthRequest="500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/> <!-- 60% width for game grid -->
+                <ColumnDefinition Width="2*"/> <!-- 40% width for buttons -->
+            </Grid.ColumnDefinitions>
 
+            <!-- 3x3 game grid -->
+            <Grid Grid.Column="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Buttons for the 3x3 grid -->
+                <Button x:Name="button00" Grid.Row="0" Grid.Column="0" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+                <Button x:Name="button01" Grid.Row="0" Grid.Column="1" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+                <Button x:Name="button02" Grid.Row="0" Grid.Column="2" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+                <Button x:Name="button10" Grid.Row="1" Grid.Column="0" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+                <Button x:Name="button11" Grid.Row="1" Grid.Column="1" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+                <Button x:Name="button12" Grid.Row="1" Grid.Column="2" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+                <Button x:Name="button20" Grid.Row="2" Grid.Column="0" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+                <Button x:Name="button21" Grid.Row="2" Grid.Column="1" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+                <Button x:Name="button22" Grid.Row="2" Grid.Column="2" Clicked="OnGridButtonClicked" BackgroundColor="#6666AA" Margin="5"/>
+            </Grid>
+
+            <VerticalStackLayout Grid.Column="1" Spacing="10" Margin="5">
+                <Button x:Name="hintButton" Text="Get Hint (2 left)" Clicked="OnGetHintClicked" Background="#448866" TextColor="White"/>
+                <Button x:Name="newGameButton" Text="New Game" Clicked="OnNewGameClicked" Background="#448866" TextColor="White"/>
+                <Button x:Name="mainMenuButton" Text="Main Menu" Clicked="OnMainMenuClicked" Background="#448866" TextColor="White"/>
+            </VerticalStackLayout>
         </Grid>
 
-    </Grid>
 
+        <!-- Bonus rows at the bottom -->
+        <StackLayout Grid.Row="2" Orientation="Vertical" Margin="10">
+            <!-- Hint Bonus -->
+            <Label MinimumWidthRequest="500" Padding="10" Text="Hints Bonus: x2" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" Background="#AAAACC"/>
+            <Label MinimumWidthRequest="500" Padding="10" Text="Time Bonus: x2" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" Background="#AAAACC"/>
+            <Label MinimumWidthRequest="500" Padding="10" Text="Difficulty Bonus: x2" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" Background="#AAAACC"/>
+            <Label MinimumWidthRequest="500" Padding="10" Text="Score: 430950" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" Background="#777799"/>
+
+        </StackLayout>
+    </Grid>
 </ContentPage>
